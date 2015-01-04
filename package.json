@@ -1,0 +1,19 @@
+{
+  "name": "convojs",
+  "version": "0.0.0",
+  "description": "Operation of convolution",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saromanov/convojs.git"
+  },
+  "author": "Sergey Romanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saromanov/convojs/issues"
+  },
+  "homepage": "https://github.com/saromanov/convojs"
+}
