@@ -23,6 +23,10 @@ describe('1D convolution with 1d kernel', function(){
         assert.deepEqual(convo.conv1d([1.4],[2.8,3.9]),[3.9199999999999995,5.46]);
     });
 
+    it("should return 0, 2.8, 9.5, 7.8", function(){
+        assert.deepEqual(convo.conv1d([0,1,2],[2.8,3.9]), [0,2.8,9.5,7.8]);
+    });
+
 
 
 });
