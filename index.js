@@ -1,6 +1,3 @@
-hashtable = require('hashtable');
-
-
 module.exports = {
     conv1d: function(input, kernel) {
         return Conv1d(input, kernel);
@@ -9,20 +6,19 @@ module.exports = {
     conv2d: function(input, kernel) {
         return Conv2D(input, kernel);
     }
-}
+};
 
 
 var Conv2D = function(input, kernel) {
     var hlen = input.length;
     var wlen = input[0].length;
-    var result = new Util().zerosn(hlen, wlen);
+    var result = zerosn(hlen, wlen);
     //var result = new Util().zerosn(kernel.length, kernel.length);
     var wh = kernel.length;
     var ww = kernel[0].length;
     var kernX = Math.floor(wh / 2);
     var kernY = Math.floor(ww / 2);
     var len = input.length + kernel.length - 1;
-    var hash = new hashtable();
     for (var k = 0; k < hlen; ++k) {
         for (var m = 0; m < wlen; ++m) {
             var temp = 0;
@@ -30,10 +26,6 @@ var Conv2D = function(input, kernel) {
                 for (var j = 0; j < kernel[i].length; ++j) {
                     if (k == 2 && m === 0) {}
                     var kernresult = ConvHelp2d(kernel, kernX - j + 1, kernY - i + 1);
-                    hash.put([
-                        kernX - j + 1,
-                        kernY - i + 1
-                    ], kernresult);
                     temp += ConvHelp2d(input, j + k - 1, i - 1 + m) * kernresult;
                 }
             }
@@ -79,3 +71,16 @@ var ComputeConv1D = function(invalue, kervalue) {
         return 0;
     return invalue * kervalue;
 }
+
+var zeros = function(size) {
+    return Array.apply(null, Array(size)).map(function() {
+        return 0;
+    });
+}
+var zerosn = function(size1, size2) {
+    var w = zeros(size2);
+    return zeros(size1).map(function() {
+        return zeros(size2);
+    });
+
+};
