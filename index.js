@@ -13,7 +13,6 @@ var Conv2D = function(input, kernel) {
     var hlen = input.length;
     var wlen = input[0].length;
     var result = zerosn(hlen, wlen);
-    //var result = new Util().zerosn(kernel.length, kernel.length);
     var wh = kernel.length;
     var ww = kernel[0].length;
     var kernX = Math.floor(wh / 2);
@@ -33,7 +32,7 @@ var Conv2D = function(input, kernel) {
         }
     }
     return result;
-}
+};
 
 var ConvHelp2d = function(data, i, j) {
     if (i < 0 || j < 0)
@@ -43,7 +42,7 @@ var ConvHelp2d = function(data, i, j) {
     if (i > data.length - 1 || j > data[0].length - 1)
         return 0;
     return data[i][j];
-}
+};
 
 
 //1D convolution
@@ -55,28 +54,28 @@ var Conv1d = function(input, kernel) {
         for (var j = 0; j <= i; ++j) {
             var first = input[j];
             var res = kernel[i - j];
-            if (res == undefined)
+            if (res === undefined)
                 res = 0;
             value += ComputeConv1D(input[j], kernel[i - j]);
         }
         result.push(value);
     }
     return result;
-}
+};
 
 
 //x[i] * h[j-i]
 var ComputeConv1D = function(invalue, kervalue) {
-    if (invalue == undefined || kervalue == undefined)
+    if (invalue === undefined || kervalue === undefined)
         return 0;
     return invalue * kervalue;
-}
+};
 
 var zeros = function(size) {
     return Array.apply(null, Array(size)).map(function() {
         return 0;
     });
-}
+};
 var zerosn = function(size1, size2) {
     var w = zeros(size2);
     return zeros(size1).map(function() {
