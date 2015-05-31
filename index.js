@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 module.exports = {
     conv1d: function(input, kernel) {
         return Conv1d(input, kernel);
@@ -48,6 +50,7 @@ var ConvHelp2d = function(data, i, j) {
 //1D convolution
 var Conv1d = function(input, kernel) {
     var result = [];
+    kernel = _.flatten(kernel);
     var len = input.length + kernel.length - 1;
     for (var i = 0; i < len; ++i) {
         var value = 0;
@@ -62,7 +65,6 @@ var Conv1d = function(input, kernel) {
     }
     return result;
 };
-
 
 //x[i] * h[j-i]
 var ComputeConv1D = function(invalue, kervalue) {
